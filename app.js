@@ -17,8 +17,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
-app.use(history());
+// app.use(cors()); // uncomment this if needed
+// app.use(history()); // uncomment this if needed
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
