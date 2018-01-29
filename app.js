@@ -8,6 +8,7 @@ var cors         = require('cors');
 var history      = require('connect-history-api-fallback');
 
 var index = require('./routes/index');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -17,11 +18,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
-app.use(history());
+// app.use(cors()); // for vue
+// app.use(history()); // for vue
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,7 +40,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
+  res.send('error')
 });
 
 module.exports = app;
